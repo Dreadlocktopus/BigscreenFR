@@ -1,0 +1,9 @@
+# robots.txt pour bigscreenfr.fr
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://bigscreenfr.fr/sitemap.xml
+
+# Optimisation du crawl 
+Crawl-delay: 10
