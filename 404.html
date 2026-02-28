@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>Redirection...</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        background: #0a0a1a;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-family: 'Segoe UI', sans-serif;
+        color: white;
+        overflow: hidden;
+      }
+
+      .octopus {
+        font-size: 100px;
+        animation: float 3s ease-in-out infinite;
+        filter: drop-shadow(0 0 20px #9b59b6);
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(-5deg); }
+        50% { transform: translateY(-20px) rotate(5deg); }
+      }
+
+      h1 {
+        font-size: 2rem;
+        margin-top: 20px;
+        color: #9b59b6;
+        text-shadow: 0 0 10px #9b59b6;
+      }
+
+      p {
+        margin-top: 10px;
+        color: #aaa;
+        font-size: 1rem;
+      }
+
+      .countdown {
+        margin-top: 20px;
+        font-size: 1.2rem;
+        color: #e50914;
+      }
+
+      .bubbles span {
+        position: absolute;
+        bottom: -50px;
+        background: rgba(155, 89, 182, 0.3);
+        border-radius: 50%;
+        animation: rise linear infinite;
+      }
+
+      @keyframes rise {
+        0% { transform: translateY(0) scale(1); opacity: 0.8; }
+        100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+      }
+    </style>
+    <script>
+      let count = 3;
+      function updateCount() {
+        document.getElementById("count").textContent = count;
+        if (count <= 0) {
+          window.location.href = "/BigscreenFR/";
+        } else {
+          count--;
+          setTimeout(updateCount, 1000);
+        }
+      }
+
+      window.onload = function() {
+        updateCount();
+
+        // Génère des bulles
+        const body = document.querySelector('.bubbles');
+        for (let i = 0; i < 15; i++) {
+          const b = document.createElement('span');
+          const size = Math.random() * 30 + 10;
+          b.style.width = size + 'px';
+          b.style.height = size + 'px';
+          b.style.left = Math.random() * 100 + 'vw';
+          b.style.animationDuration = (Math.random() * 6 + 4) + 's';
+          b.style.animationDelay = (Math.random() * 5) + 's';
+          body.appendChild(b);
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <div class="bubbles"></div>
+    <div class="octopus">🐙</div>
+    <h1>Page introuvable !</h1>
+    <p>Le Dreadlocktopus te ramène à l'accueil…</p>
+    <div class="countdown">Redirection dans <span id="count">3</span>s</div>
+  </body>
+</html>
